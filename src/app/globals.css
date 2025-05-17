@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.icon-rotate {
+  transition: transform 0.3s ease;
+}
+
+.group:hover .icon-rotate {
+  animation: icon-spin 0.5s ease;
+}
+
+@keyframes icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-pink-500 bg-clip-text text-transparent;
+  }
+}
