@@ -11,31 +11,48 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    try {
+      await emailjs.sendForm(
+        "service_fma7yqk", // e.g. 'service_1234567'
+        "template_9v3sgit", // e.g. 'template_abc1234'
+        e.target,
+        "yyN72pt5lSA4VNmmS" // e.g. 'user_abc123def456'
+      );
       toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+        title: "Success!",
+        description: "Your message has been sent successfully.",
+        variant: "default",
       });
+
+      // Clear form
+      e.target.reset();
+    } catch (error) {
+      toast({
+        title: "Error!",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
+
   return (
-    
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold text-center heading-underline">
-  Get In  <span className="text-primary">Touch</span>
-</h2>
+          Get In <span className="text-primary">Touch</span>
+        </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
           Have a project in mind or want to collaborate? Feel free to reach out.
@@ -64,7 +81,7 @@ export const ContactSection = () => {
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="p-3 rounded-full bg-primary/10">
                   <MapPin className="h-6 w-6 text-primary" />{" "}
@@ -81,29 +98,29 @@ export const ContactSection = () => {
             <div className="pt-8">
               <h4 className="font-medium mb-4">Connect With Me</h4>
               <div className="flex space-x-6 justify-center">
-                <a 
-                  href="https://www.linkedin.com/in/haribharadwaj3" 
+                <a
+                  href="https://www.linkedin.com/in/haribharadwaj3"
                   target="_blank"
                   className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-all duration-300 hover:scale-110"
                 >
                   <Linkedin className="h-7 w-7 text-primary" />
                 </a>
-                <a 
-                  href="https://github.com/haribharadwaj3" 
+                <a
+                  href="https://github.com/haribharadwaj3"
                   target="_blank"
                   className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-all duration-300 hover:scale-110"
                 >
                   <Github className="h-7 w-7 text-primary" />
                 </a>
-                <a 
-                  href="https://www.instagram.com/hari_bharadwaj311/" 
+                <a
+                  href="https://www.instagram.com/hari_bharadwaj311/"
                   target="_blank"
                   className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-all duration-300 hover:scale-110"
                 >
                   <Instagram className="h-7 w-7 text-primary" />
                 </a>
-                <a 
-                  href="https://x.com/Hari_Bharadwaj3" 
+                <a
+                  href="https://x.com/Hari_Bharadwaj3"
                   target="_blank"
                   className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 transition-all duration-300 hover:scale-110"
                 >
@@ -113,13 +130,10 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
+          <div className="bg-card p-8 rounded-lg shadow-xs">
             <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
@@ -133,7 +147,7 @@ export const ContactSection = () => {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="Enter Your Name"
                 />
               </div>
@@ -151,7 +165,7 @@ export const ContactSection = () => {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder="example@gmail.com"
                 />
               </div>
@@ -168,7 +182,8 @@ export const ContactSection = () => {
                   id="message"
                   name="message"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
+                  rows="4"
+                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
                   placeholder="Hello, I'd like to talk about..."
                 />
               </div>
@@ -176,9 +191,7 @@ export const ContactSection = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
+                className="cosmic-button w-full flex items-center justify-center gap-2"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
                 <Send size={16} />
