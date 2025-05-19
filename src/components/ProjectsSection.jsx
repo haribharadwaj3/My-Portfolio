@@ -3,6 +3,15 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
 	{
 		id: 1,
+		title: "StayEase",
+		description:
+			"StayEase is a home and hotel booking platform where guests can explore property listings, add favorites, and book stays by selecting dates and times. Hosts can sign up to list their homes for rent. The platform offers a smooth and intuitive experience for both guests and hosts.",
+		image: "/projects/project6.png",
+		tags: ["EJS", "MongoDB", "Nodejs"],
+		githubUrl: "https://github.com/haribharadwaj3/StayEase",
+	},
+	{
+		id: 1,
 		title: "The News Hub",
 		description:
 			"The News Hub is a news aggregator that allows users to segregate news based on newspapers such as CNN, Associated Press (AP), Times of India (TOI), Hindustan Times (HT), BBC, and The New York Times (NYT). It provides a simple interface to select a news source and displays all the latest headlines.",
