@@ -1,4 +1,4 @@
-import { Compass, Code, Brain } from "lucide-react";
+import { Compass, Code, Brain, Mail, FileDown } from "lucide-react";
 
 export const AboutSection = () => {
   return (
@@ -34,14 +34,16 @@ export const AboutSection = () => {
               </div>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button backdrop-blur-sm">
+              <a href="#contact" className="cosmic-button backdrop-blur-sm flex items-center gap-2">
+                <Mail className="h-5 w-5" />
                 Get In Touch
               </a>
 
               <a
                 href="https://drive.google.com/file/d/1OhK9-Xi1zZXf1N7E-6nUhHef3jStLpGT/view?usp=drivesdk "
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 backdrop-blur-sm"
+                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 backdrop-blur-sm flex items-center gap-2"
               >
+                <FileDown className="h-5 w-5" />
                 Download CV
               </a>
             </div>
