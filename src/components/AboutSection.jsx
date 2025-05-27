@@ -40,7 +40,7 @@ export const AboutSection = () => {
               </a>
 
               <a
-                href="https://drive.google.com/file/d/1OhK9-Xi1zZXf1N7E-6nUhHef3jStLpGT/view?usp=drivesdk "
+                href="https://drive.google.com/file/d/1QRonfIQcDkfG9twXPZdOELlqPSdEMWm-/view?usp=drivesdk  "
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300 backdrop-blur-sm flex items-center gap-2"
               >
                 <FileDown className="h-5 w-5" />
